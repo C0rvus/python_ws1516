@@ -11,4 +11,4 @@ It should look like the following:
 * marc101101                    (Markus Guder)
 * C0rvus                        (Benedikt Hierl)
 * xxxxxxxxxx                    (Philipp Mai)
-* xxxxxxxxxx                    (Christian Weber)
+* nutenough                    	(Christian Weber)
