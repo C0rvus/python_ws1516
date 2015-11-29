@@ -1,11 +1,16 @@
-from pymongo import MongoClient
+# TODO: folding comments : select Text and press CTRL + ALT + T
+# TODO: implement if exist method to not always generate new .csv-files
+# TODO: automatic writing into the database needs to be done then
+
+from pymongo import MongoClient                         # necessary to interact with MongoDB
+import pandas as pd                                     # necessary for fast .csv-processing
 
 
-# TODO Logon to DB with credentials
-# TODO folding comments : select Text and press CTRL + ALT + T
-# TODO Create collection for every year
 
-##### Connecting to the database is described below
+
+
+
+##### !! Connecting to the database is described below
 
 # <editor-fold desc="Connecting to MongoDB-Server without credentials">
 # Connects to the specified MongoDB-Server
@@ -25,7 +30,10 @@ client = MongoClient('localhost', 27017)
 # </editor-fold>
 
 
-#### Writing data to the database is defined here
+
+
+
+#### !! Writing data to the database is described below
 
 # <editor-fold desc="Getting database instance">
 # Getting database / creates it if non existent
@@ -36,7 +44,7 @@ mongo_DB_Chicago = client.Chicago_Crime_Database
 # Defines a dataset / "row" which will be written into the database later on
 # </editor-fold>
 mongo_dataSet_Row = {
-		"author": "Mike",
+		"author": "Mike_123",
         "text": "My first blog post!",
         "tags": ["mongodb", "python", "pymongo"],   # Defines an array within a column
         "date": "Bin eine 111 Rasdswwadsaow",
@@ -48,6 +56,31 @@ mongo_dataSet_Row = {
 # </editor-fold>
 chicago_2014 = mongo_DB_Chicago.chicago_2014
 chicago_2014.insert_one(mongo_dataSet_Row).inserted_id
+
+
+
+
+
+#### !! Reading and converting .CSV files is described below
+
+# <editor-fold desc="Reading and processing .CSV files">
+# Reading und processing of csv-file is done here
+# Every .csv-file will be read and, corresponding to the columns we want to keep, a new .csv-file will be generated
+# Source: http://pandas.pydata.org/pandas-docs/stable/api.html
+# </editor-fold>
+
+starting_Counter = 2001                                                                 # The starting number correspondig to our first data set        (Crimes_-_2001.csv)
+ending_Counter = 2014                                                                   # The ending number corresponding to our last data set          (Crimes_-_2014.csv)
+columns_To_keep = ['Date','Block']
+
+
+for i in range(starting_Counter, ending_Counter):                                       # Iterates over all .CSV file
+        print str(i) + ".er Durchgang"
+        df = pd.read_csv('.\datasets\Crimes_-_' + str(i) +'.csv')
+        df_new = df[columns_To_keep]
+        df_new.to_csv('.\datasets\_MODIFIED_Crimes_-_' + str(i) +'.csv', index=False)        # Index=False ignores creation of a counting column
+
+
 
 
 # <editor-fold desc="Getting collection">
