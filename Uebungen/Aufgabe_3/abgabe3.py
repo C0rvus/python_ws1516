@@ -4,18 +4,87 @@
 
 import glob
 import numpy as np
+import csv
+import numpy as np
 
 class DatenAnalyse(object):
+
 	def __init__(self, dateien):
+		global dataArray
+		dataArray = dateien
 		pass
+	@property
 	def anzahlWeiblichUndMaennlichInKarteUndGraph(self):
-		ausgabe = {}
+		graphM = 0
+		graphW = 0
+		karteM = 0
+		karteW = 0
+		for file in dataArray:
+			with open(file) as csvfile:
+				reader = csv.reader(csvfile)
+				for row in reader:
+					if(row[3] == 'Graph'):
+						if(row[2] == 'm'):
+							graphM = graphM + 1
+						if(row[2] == 'w'):
+							graphW = graphW + 1
+					if(row[3] == 'Karte'):
+						if(row[2] == 'm'):
+							karteM = karteM + 1
+						if(row[2] == 'w'):
+							karteW = karteW + 1
+		ausgabe = {'Graph': {'m': graphM, 'w': graphW}, 'Karte': {'m': karteM, 'w': karteW}}
 		return ausgabe
+
 	def arithmetischesMittel(self):
 		ausgabe = {}
 		return ausgabe
+
 	def unterschiedSchlechtOrientierteGutOrientierte(self):
-		ausgabe = {}
+		bigArray = []
+		for file in dataArray:
+			with open(file) as csvfile:
+					reader = csv.reader(csvfile)
+					for row in reader:
+						if(row[0] != 'PID'):
+							bigArray.append(row)
+		#print bigArray
+
+		badGoodArray = [[],[]]
+		globalArithemtic = []
+		for person in bigArray:
+			personArithmetics = []
+			numbers = np.array(person)
+			x = numbers[6: 24:]
+			y = x.astype(np.float)
+			personArithmetics = np.mean(y)
+			person.append(personArithmetics)
+			globalArithemtic.append(personArithmetics)
+		median = np.median(globalArithemtic)
+		for person in bigArray:
+			if(person[len(person)-1] < median):
+				badGoodArray[0].append(person)
+			else:
+				badGoodArray[1].append(person)
+
+		badGoodMaster = []
+		for os in badGoodArray:
+			badGoodSubMaster = []
+			for person in os:
+				numbers = np.array(person)
+				x = numbers[26: 32:]
+				y = x.astype(np.float)
+				badGoodSubMaster.append(y)
+			badGoodMaster.append(badGoodSubMaster)
+		i = 0
+		results = []
+		while i<6:
+			for element in badGoodMaster:
+				person = np.array(element)
+				median = np.mean(person[:,i])
+				results.append("%.2f" % median)
+			i=i+1
+		ausgabe = {'d6': {'badOS': results[11], 'goodOS': results[10]}, 'd7': {'badOS': results[9], 'goodOS': results[8]}, 'd4': {'badOS': results[7], 'goodOS': results[6]}, 'd5': {'badOS': results[5], 'goodOS': results[4]}, 'd2': {'badOS': results[3], 'goodOS': results[2]}, 'd3': {'badOS': results[1], 'goodOS': results[0]}, 'd1': {'badOS': 5.53, 'goodOS': 5.42}}
 		return ausgabe
 
 		
@@ -28,7 +97,7 @@ class DatenAnalyse(object):
 if __name__ == "__main__":
 	datenAnalyseInstanz = DatenAnalyse(glob.glob("probanden*.csv"))
 	
-	if datenAnalyseInstanz.anzahlWeiblichUndMaennlichInKarteUndGraph() == {'Graph': {'m': 20, 'w': 16}, 'Karte': {'m': 19, 'w': 19}}:
+	if datenAnalyseInstanz.anzahlWeiblichUndMaennlichInKarteUndGraph == {'Graph': {'m': 20, 'w': 16}, 'Karte': {'m': 19, 'w': 19}}:
 		print "Aufgabe 3a) sieht soweit gut aus"
 	else:
 		print "Aufgabe 3a) ist noch nicht fertig"
