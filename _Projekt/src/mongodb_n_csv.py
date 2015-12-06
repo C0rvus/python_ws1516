@@ -84,8 +84,6 @@ def process_CSV_Data():
 # MongoClient('mongodb://user:' + password + '@127.0.0.1')        # username and serveradress would be needed to be chnaged
 # Source: http://api.mongodb.org/python/current/examples/authentication.html    @ 28.11.2015 ~ 21:22
 #
-
-
 # </editor-fold>
 def connect_To_MongoDB():
         global client                                   # references the global variable to make use of it locally
@@ -148,7 +146,6 @@ def write_Data_To_DB():
 		global mongo_DataSet_Row                        # references the global variable to make use of it locally
 		global mongo_DB_Chicago                         # references the global variable to make use of it locally
 
-		# TODO: Expand this shit to write necessary data into all tables !
 		table_To_Be_Written = mongo_DB_Chicago[str(csv_Counter_In_Between)]             # Selects the table / collection the new line will be written into
 		table_To_Be_Written.insert_one(mongo_DataSet_Row)                               # Wroites the actually processed line into that collection
 

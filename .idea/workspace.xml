@@ -24,9 +24,26 @@
       <file leaf-file-name="mongodb_n_csv.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.552901">
-              <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
-              <folding />
+            <state vertical-scroll-proportion="0.58143324">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="e#1610#1671#0" expanded="false" />
+                <element signature="e#1673#1710#0" expanded="false" />
+                <element signature="e#1813#2873#0" expanded="false" />
+                <element signature="e#2873#2936#0" expanded="false" />
+                <element signature="e#3351#4462#0" expanded="false" />
+                <element signature="e#4480#4540#0" expanded="false" />
+                <element signature="e#4542#4593#0" expanded="false" />
+                <element signature="e#5366#5627#0" expanded="false" />
+                <element signature="e#5629#5683#0" expanded="false" />
+                <element signature="e#5820#6053#0" expanded="false" />
+                <element signature="e#6055#6112#0" expanded="false" />
+                <element signature="e#6225#6614#0" expanded="false" />
+                <element signature="e#6616#6680#0" expanded="false" />
+                <element signature="e#6883#8545#0" expanded="false" />
+                <element signature="e#8547#8630#0" expanded="false" />
+                <element signature="e#8714#9220#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,8 +93,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -86,15 +103,57 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Python_git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Python_git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Projekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Repository" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Python_git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Projekt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.mongodb">
+  <component name="RunManager" selected="Python.mongodb_n_csv">
     <configuration default="false" name="mongodb" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,6 +167,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Repository" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/_Projekt/src/mongodb.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="mongodb_n_csv" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/_Projekt/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Repository" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -234,12 +310,14 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.mongodb" />
+      <item index="1" class="java.lang.String" itemvalue="Python.mongodb_n_csv" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.mongodb" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.mongodb_n_csv" />
+        <item index="1" class="java.lang.String" itemvalue="Python.mongodb" />
       </list>
     </recent_temporary>
   </component>
@@ -260,14 +338,14 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1988273" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1988273" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29217198" sideWeight="0.5021322" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29217198" sideWeight="0.4978678" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -293,16 +371,58 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.552901">
-          <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1610#1671#0" expanded="false" />
+            <element signature="e#1673#1710#0" expanded="false" />
+            <element signature="e#1813#2873#0" expanded="false" />
+            <element signature="e#2873#2936#0" expanded="false" />
+            <element signature="e#3351#4462#0" expanded="false" />
+            <element signature="e#4480#4540#0" expanded="false" />
+            <element signature="e#4542#4593#0" expanded="false" />
+            <element signature="e#5366#5627#0" expanded="false" />
+            <element signature="e#5629#5683#0" expanded="false" />
+            <element signature="e#5820#6053#0" expanded="false" />
+            <element signature="e#6055#6112#0" expanded="false" />
+            <element signature="e#6225#6614#0" expanded="false" />
+            <element signature="e#6616#6680#0" expanded="false" />
+            <element signature="e#6883#8545#0" expanded="false" />
+            <element signature="e#8547#8630#0" expanded="false" />
+            <element signature="e#8714#9220#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58143324">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#1610#1671#0" expanded="false" />
+            <element signature="e#1673#1710#0" expanded="false" />
+            <element signature="e#1813#2873#0" expanded="false" />
+            <element signature="e#2873#2936#0" expanded="false" />
+            <element signature="e#3351#4462#0" expanded="false" />
+            <element signature="e#4480#4540#0" expanded="false" />
+            <element signature="e#4542#4593#0" expanded="false" />
+            <element signature="e#5366#5627#0" expanded="false" />
+            <element signature="e#5629#5683#0" expanded="false" />
+            <element signature="e#5820#6053#0" expanded="false" />
+            <element signature="e#6055#6112#0" expanded="false" />
+            <element signature="e#6225#6614#0" expanded="false" />
+            <element signature="e#6616#6680#0" expanded="false" />
+            <element signature="e#6883#8545#0" expanded="false" />
+            <element signature="e#8547#8630#0" expanded="false" />
+            <element signature="e#8714#9220#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
