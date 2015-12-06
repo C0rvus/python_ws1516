@@ -21,30 +21,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mongodb.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb.py">
+      <file leaf-file-name="mongodb_n_csv.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66775244">
-              <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-              <folding>
-                <element signature="e#352#444#0" expanded="true" />
-                <element signature="e#2175#2236#0" expanded="false" />
-                <element signature="e#2238#2275#0" expanded="false" />
-                <element signature="e#2378#3071#0" expanded="false" />
-                <element signature="e#3071#3134#0" expanded="false" />
-                <element signature="e#3549#4331#0" expanded="false" />
-                <element signature="e#4349#4409#0" expanded="false" />
-                <element signature="e#4411#4462#0" expanded="false" />
-                <element signature="e#5237#5437#0" expanded="false" />
-                <element signature="e#5439#5493#0" expanded="false" />
-                <element signature="e#5630#5838#0" expanded="false" />
-                <element signature="e#5840#5897#0" expanded="false" />
-                <element signature="e#6010#6123#0" expanded="false" />
-                <element signature="e#6125#6189#0" expanded="false" />
-                <element signature="e#6392#7820#0" expanded="false" />
-                <element signature="e#7822#7905#0" expanded="false" />
-                <element signature="e#7989#8358#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.552901">
+              <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,6 +41,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/_Projekt/src/mongodb.py" />
+        <option value="$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py" />
       </list>
     </option>
   </component>
@@ -93,6 +76,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -104,7 +88,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -315,55 +298,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb.py">
+    <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb_n_csv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#352#444#0" expanded="true" />
-            <element signature="e#2175#2236#0" expanded="false" />
-            <element signature="e#2238#2275#0" expanded="false" />
-            <element signature="e#2378#3071#0" expanded="false" />
-            <element signature="e#3071#3134#0" expanded="false" />
-            <element signature="e#3549#4331#0" expanded="false" />
-            <element signature="e#4349#4409#0" expanded="false" />
-            <element signature="e#4411#4462#0" expanded="false" />
-            <element signature="e#5237#5437#0" expanded="false" />
-            <element signature="e#5439#5493#0" expanded="false" />
-            <element signature="e#5630#5838#0" expanded="false" />
-            <element signature="e#5840#5897#0" expanded="false" />
-            <element signature="e#6010#6123#0" expanded="false" />
-            <element signature="e#6125#6189#0" expanded="false" />
-            <element signature="e#6392#7820#0" expanded="false" />
-            <element signature="e#7822#7905#0" expanded="false" />
-            <element signature="e#7989#8358#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_Projekt/src/mongodb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66775244">
-          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-          <folding>
-            <element signature="e#352#444#0" expanded="true" />
-            <element signature="e#2175#2236#0" expanded="false" />
-            <element signature="e#2238#2275#0" expanded="false" />
-            <element signature="e#2378#3071#0" expanded="false" />
-            <element signature="e#3071#3134#0" expanded="false" />
-            <element signature="e#3549#4331#0" expanded="false" />
-            <element signature="e#4349#4409#0" expanded="false" />
-            <element signature="e#4411#4462#0" expanded="false" />
-            <element signature="e#5237#5437#0" expanded="false" />
-            <element signature="e#5439#5493#0" expanded="false" />
-            <element signature="e#5630#5838#0" expanded="false" />
-            <element signature="e#5840#5897#0" expanded="false" />
-            <element signature="e#6010#6123#0" expanded="false" />
-            <element signature="e#6125#6189#0" expanded="false" />
-            <element signature="e#6392#7820#0" expanded="false" />
-            <element signature="e#7822#7905#0" expanded="false" />
-            <element signature="e#7989#8358#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.552901">
+          <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
