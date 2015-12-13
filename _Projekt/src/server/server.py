@@ -21,8 +21,8 @@ def mainMethod():
 	mainArray = []
 
 	for year in yearArray:
-	    mainArray.append(db.get_collection(year).count())
-	    returnString = returnString + "[" + year + "," + db.get_collection(year).count() + "]"
-	returnString = returnString + "]"
+    	mainArray.append(db.get_collection(year).count())
+    	returnString = str(returnString) + "[" + str(year) + "," + str(db.get_collection(year).count()) + "]"
+	returnString = returnString + "]}"
 
 	return returnString
