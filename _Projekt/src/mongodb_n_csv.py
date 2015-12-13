@@ -96,7 +96,7 @@ def connect_To_MongoDB():
 def get_DB_Instance():
         global mongo_DB_Chicago                         # references the global variable to make use of it locally
 
-        mongo_DB_Chicago = client.Chicago_Crime_Database        # refers to the crime database and creates it if non existent
+        mongo_DB_Chicago = client.dataDump              # refers to the crime database and creates it if non existent
 
 # <editor-fold desc="Retrieves all collections / tables">
 # Stores all mongoDB collections (tables) into mongo_DB_Collections
