@@ -12,14 +12,13 @@
 
 <script>
 $.ajax({
-    url: 'http://52.29.118.210:5000/getData/number-of-tables'
-    data: myData,
+    url: 'http://52.29.118.210:5000/getData/number-of-tables',
     type: 'GET',
     crossDomain: true,
-    dataType: 'jsonp',
-    success: function() { alert("Success"); },
-    error: function() { alert('Failed!'); },
-    beforeSend: setHeader
+    dataType: 'text',
+    success: function (data) {
+        console.log(data);
+    }
 });
 
 $(function buildHighCharts() {
