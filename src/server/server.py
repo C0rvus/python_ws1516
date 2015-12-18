@@ -1,9 +1,6 @@
 from flask import Flask
 from pymongo import MongoClient
-from flask.ext.cors import CORS
-
 app = Flask(__name__)
-CORS(app)
 
 @app.route("/getData/number-of-tables", methods=['GET'])
 def hello():
