@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route("/getData/number-of-tables", methods=['GET'])
 def hello():
-    return "{'demo':test}"
+    return main_Method()
 
 def main_Method():
 	client = MongoClient()
