@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/getData/number-of-tables", methods=['GET'])
 def hello():
-    return main_Method()
+    return "{'demo':test}"
 
 def main_Method():
 	client = MongoClient()

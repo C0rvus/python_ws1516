@@ -11,7 +11,8 @@
 $.ajax({
           type: "GET",
           url: "http://52.29.118.210:5000/getData/number-of-tables",
-          dataType: "json",
+          dataType: 'JSONP',
+          jsonpCallback: 'callback',
           contentType: "application/x-www-form-urlencoded;charset=utf-8",
           success: function (data) {
             console.log(data);
