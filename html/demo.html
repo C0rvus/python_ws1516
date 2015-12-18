@@ -11,19 +11,20 @@
 <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
 
 <script>
+var globalDataTestMegaGeil = null;
+
 $.ajax({
     url: 'http://52.29.118.210:5000/getData/number-of-tables',
     type: 'GET',
     crossDomain: true,
     dataType: 'text',
     success: function (data) {
-        console.log(data);
-        var demoData = JSON.stringify(data);
-        console.log(demoData);
+        console.log(jQuery.parseJSON(data));
+        buildHighCharts(jQuery.parseJSON(data));
     }
 });
 
-$(function buildHighCharts() {
+function buildHighCharts(dataGlobal) {
     $('#container').highcharts({
         chart: {
             type: 'bar'
@@ -34,15 +35,9 @@ $(function buildHighCharts() {
         credits: {
             enabled: false
         },
-        series: [{
-            name: '2001',
-            data: [5000]
-        },{
-            name: '2002',
-            data: [5500]
-        }]
+        series: dataGlobal.series
     });
-});
+}
 </script>
 </body>
 </html>
