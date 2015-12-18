@@ -18,6 +18,8 @@ $.ajax({
     dataType: 'text',
     success: function (data) {
         console.log(data);
+        var demoData = JSON.stringify(data);
+        console.log(demoData);
     }
 });
 
