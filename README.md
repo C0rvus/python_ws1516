@@ -10,5 +10,5 @@ It should look like the following:
 ## Authors:
 * marc101101                    (Markus Guder)
 * C0rvus                        (Benedikt Hierl)
-* xxxxxxxxxx                    (Philipp Mai)
+* maischter123                  (Philipp Mai)
 * nutenough                    	(Christian Weber)
