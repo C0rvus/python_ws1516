@@ -41,7 +41,7 @@ mainController.commonCrimeController = (function () {
           var year = $("#commonCrimeYearSelect").val(),
               type = $("#commonCrimeChartSelect").val();
           urlRequest = "http://52.29.118.210:5000/"  + "commonCrime/" + "year/" + year;
-          chart = type;
+          chartType = type;
           _getData();
         },
 
