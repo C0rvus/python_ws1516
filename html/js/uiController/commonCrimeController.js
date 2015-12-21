@@ -4,9 +4,14 @@ mainController.commonCrimeController = (function () {
 
         init = function () {
             console.log("commonCrimeController is up");
+            initEvents;
             getData();
             initView();
             return that;
+        },
+
+        initEvents = function () {
+          $("#commonCrimeButton").click(getData());
         },
 
         getData = function () {
