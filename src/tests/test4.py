@@ -1,5 +1,5 @@
 __author__ = 'markusguder'
-from DemoClass import DemoClass
+from src.server.DemoClass import DemoClass
 
 theclass = DemoClass()
 
