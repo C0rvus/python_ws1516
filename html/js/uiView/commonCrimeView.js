@@ -1,36 +1,24 @@
 mainController.commonCrimeView = (function () {  var that = {},
 
-      init = function (data) {
+      init = function (data, chartType) {
           console.log("commonCrimeView is up "  + data);
-          initModules();
+          initModules(data, chartType);
           return that;
       },
 
-      initModules = function () {
+      initModules = function (data, chartType) {
         $('#crimeContainer').highcharts({
              chart: {
-                 type: 'area',
+                 type: chartType,
                  backgroundColor: 'none'
              },
              title: {
                  text: false
              },
-             xAxis: {
-                 categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-             },
              credits: {
                  enabled: false
              },
-             series: [{
-                 name: 'John',
-                 data: [5, 3, 4, 7, 2]
-             }, {
-                 name: 'Jane',
-                 data: [2, -2, -3, 2, 1]
-             }, {
-                 name: 'Joe',
-                 data: [3, 4, 4, -2, 5]
-             }]
+             series: data.series
          });
       }
 
