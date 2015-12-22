@@ -12,9 +12,7 @@ mainController.commonCrimeView = (function () {  var that = {},
                  type: chartType,
                  backgroundColor: 'none'
              },
-             colors:{
-              //DO WHAT YOU WANT! :)
-             },
+             colors:["#00BF77","#0B67BA","#FF9500","#FF4F00"],
              title: {
                  text: false
              },
