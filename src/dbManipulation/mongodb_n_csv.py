@@ -339,9 +339,63 @@ def create_Time_Table():
 	else:
 		print "Table 'time' already exists.. Skipping the creating of that table"
 
+def create_Common_Crime_Table():
+	global mongo_DB_Chicago                         # references the global variable to make use of it locally
+	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
 
+	# Checks whether the table / collection "arrest" already exists.. If not then create that table / collection
+	if not any(str("commonc") in s for s in mongo_DB_Collections):                 # Whenever the table already exists -> do nothing
 
+		# Iterate over every table / collection and get the amount of arrested crimes
+		for i in range (data_Counter_Starting, data_Counter_Ending):
 
+			print "Creating comonc entries for the year " + str(i)
+
+			collection = mongo_DB_Chicago[str(i)]                                 # Gets the collection depending on the defined variable name (i.e. 2001)
+			selector = collection.find()                                          # Give me all entries in that table with the attribute "Arrest" = True
+
+			# noinspection PyTypeChecker
+			types_Array = []
+			types_Array_Count = []
+			types_Dict_Style = dict({})
+			for document in selector:
+				type_Var = document.get("Primary Type")                                       # only get me the table with the column "Primary Type"
+				type_Var = unicodedata.normalize('NFKD', type_Var).encode('ascii', 'ignore')  # because it is in unicode-style, we have to convert it first. [-> (i.e.) 02/26/2001 12:00:00 PM]
+
+				# Source: https://stackoverflow.com/questions/7571635/fastest-way-to-check-if-a-value-exist-in-a-list
+
+				# This is a faster index checker than usual..
+				try:
+					b=types_Array.index(type_Var)
+
+				# If the crime type does not yet exist in the list
+				except ValueError:
+					types_Array.extend([type_Var])          # adds that type into the list
+					types_Array_Count.extend([1])           # adds a counter into the count list
+
+				# If crime type does already exist
+				else:
+					"Do Shit"
+					# raise counter by one, depending on index
+					types_Array_Count[types_Array.index(type_Var)] +=1
+
+			# Builds the dictionary here, which will be added into the database table later on
+			for j in range (0, len(types_Array)):
+				temp_Var = {types_Array[j]: types_Array_Count[j]}
+				types_Dict_Style.update(temp_Var)
+
+			# Add that year into the dictionary, after iterating
+			temp_Year = {"year": i}
+			types_Dict_Style.update(temp_Year)
+
+			types_Dict_Style = collections.OrderedDict(sorted(types_Dict_Style.items()))              # Contains that previously defined dictionary, with columns sorted in alphabetically order
+
+			print types_Dict_Style
+			table_To_Be_Written = mongo_DB_Chicago["commonc"]                      # references the table into which that data will be written
+			table_To_Be_Written.insert_one(types_Dict_Style)                       # write it now
+
+	else:
+		print "Table 'commonc' already exists.. Skipping the creation of that table"
 
 def reset_Data_Counter():
 	global data_Counter_Starting                             # references the global variable to make use of it locally
@@ -358,6 +412,7 @@ connect_To_MongoDB()                                    # Connects to the mongoD
 get_DB_Instance()                                       # Gets and declares the mongoDB-Instance
 get_DB_Collections()                                    # Gets all existent collections (necessary to skip unnecessary / redundant writes into mongoDB)
 
-read_CSV_Data()                                         # Reads in those csv-Data and processes them afterwards.. This is only necessary once for the initial mongoDB build up
-create_Arrest_Table()                                   # Creates an extra table, which contains the amount of all crimes which lead to an arrest.
-create_Time_Table()                                     # Creates an extra Time which contains the amount of crimes during day hours
+#read_CSV_Data()                                         # Reads in those csv-Data and processes them afterwards.. This is only necessary once for the initial mongoDB build up
+#create_Arrest_Table()                                   # Creates an extra table which contains the amount of all crimes which lead to an arrest.
+#create_Time_Table()                                     # Creates an extra Time which contains the amount of crimes during day hours
+#create_Common_Crime_Table()                              # Creates an extra table which contains the crime categories with its number of occurrence for every year
