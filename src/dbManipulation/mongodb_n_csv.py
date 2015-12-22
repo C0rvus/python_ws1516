@@ -343,7 +343,7 @@ def create_Common_Crime_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
 
-	# Checks whether the table / collection "time" already exists.. If not then create that table / collection
+	# Checks whether the table / collection "commonc" already exists.. If not then create that table / collection
 	if not any(str("commonc") in s for s in mongo_DB_Collections):                   # Whenever the table already exists -> do nothing
 
 		# Iterate over every table / collection and get the amount of arrested crimes
@@ -393,8 +393,6 @@ def create_Common_Crime_Table():
 	else:
 		print "Table 'commonc' already exists.. Skipping the creation of that table"
 
-
-
 def create_Location_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
@@ -406,7 +404,7 @@ def create_Location_Table():
 	# Iterate over every table / collection and get the amount of arrested crimes
 	for i in range (data_Counter_Starting, data_Counter_Ending):
 
-		# Checks whether the table / collection "time" already exists.. If not then create that table / collection
+		# Checks whether the table / collection "locX" already exists.. If not then create that table / collection
 			if not any(str("loc" + str(i)) in s for s in mongo_DB_Collections):                   # Whenever the table already exists -> do nothing
 
 				print "Creating location entries for the year " + str(i)
@@ -414,23 +412,23 @@ def create_Location_Table():
 				collection = mongo_DB_Chicago[str(i)]                                 # Gets the collection depending on the defined variable name (i.e. 2001)
 				selector = collection.find()                                          # Give me all entries in that table with the attribute "Arrest" = True
 
+				# Iterates over every document in this collection
 				for document in selector:
-					#print document
 					loc_Lat_Var = document.get("Latitude")                                                # only get me the the column "Latitude"
 					loc_Lon_Var = document.get("Longitude")                                               # only get me the the column "Longitude"
 
 					rounded_Loc_Lat_Var = "%.2f" % loc_Lat_Var                                            # %.3f takes about 15 minutes..
 					rounded_Loc_Lon_Var = "%.2f" % loc_Lon_Var                                            # %.3f takes about 15 minutes..
-
-					# Whenever the pair of Latitutide and Longitude does not exist
-
 					type_Var = [rounded_Loc_Lat_Var, rounded_Loc_Lon_Var]
+
+
 					# This is a faster index checker than usual..
 					# Source: https://stackoverflow.com/questions/7571635/fastest-way-to-check-if-a-value-exist-in-a-list
 
 					try:
 						b=loc_Array.index(type_Var)
-					# If the location does not yet exist in the list
+
+					# Whenever the pair of Latitutide and Longitude does not exist yet
 					except ValueError:
 						loc_Array.extend([type_Var])          # adds that type into the list
 						loc_Array_Count.extend([1])           # adds a counter into the count list
