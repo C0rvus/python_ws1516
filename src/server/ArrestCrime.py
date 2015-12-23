@@ -9,9 +9,7 @@ class ArrestCrime:
         data = {}
         mainArray = []
         for doc in db.get_collection("arrest").find():
-            if mainArray == []:
-                element = {"name": doc["year"],"y" : doc["arrests"], "sliced": "true", "selected": "true"}
-            else: element = {"name": doc["year"],"y" : doc["arrests"]}
+            element = {"name": doc["year"],"y" : doc["arrests"]}
             mainArray.append(element)
         data['series'] = mainArray
         json_data = json.dumps(data)

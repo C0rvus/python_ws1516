@@ -15,7 +15,7 @@ mainController.arrestCrimeController = (function () {
         urlRequest = "http://52.29.118.210:5000/" + topic,
 
         _initView = function (data) {
-            arrestCrimeView = mainController.arrestCrimeView.init(data, chartType);
+            arrestCrimeView = mainController.arrestCrimeView.init(data);
         },
 
         _getData = function () {
