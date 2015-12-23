@@ -11,6 +11,7 @@ mainController.timeCrimeView = (function () {
                 title: {
                     text: 'HOURLY CRIME RATE'
                 },
+                credits: false,
                 xAxis: {
                     title: {
                         text: 'Time'

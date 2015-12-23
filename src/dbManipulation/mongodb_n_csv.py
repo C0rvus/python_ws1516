@@ -405,7 +405,7 @@ def create_Location_Table():
 	for i in range (data_Counter_Starting, data_Counter_Ending):
 
 		# Checks whether the table / collection "locX" already exists.. If not then create that table / collection
-			if not any(str("loc" + str(i)) in s for s in mongo_DB_Collections):                   # Whenever the table already exists -> do nothing
+			if not any(str("loc_3_" + str(i)) in s for s in mongo_DB_Collections):                   # Whenever the table already exists -> do nothing
 
 				print "Creating location entries for the year " + str(i)
 
@@ -417,8 +417,8 @@ def create_Location_Table():
 					loc_Lat_Var = document.get("Latitude")                                                # only get me the the column "Latitude"
 					loc_Lon_Var = document.get("Longitude")                                               # only get me the the column "Longitude"
 
-					rounded_Loc_Lat_Var = "%.2f" % loc_Lat_Var                                            # %.3f takes about 15 minutes..
-					rounded_Loc_Lon_Var = "%.2f" % loc_Lon_Var                                            # %.3f takes about 15 minutes..
+					rounded_Loc_Lat_Var = "%.3f" % loc_Lat_Var                                            # %.3f takes about 15 minutes..
+					rounded_Loc_Lon_Var = "%.3f" % loc_Lon_Var                                            # %.3f takes about 15 minutes..
 					type_Var = [rounded_Loc_Lat_Var, rounded_Loc_Lon_Var]
 
 
@@ -443,10 +443,10 @@ def create_Location_Table():
 					            "Count": loc_Array_Count[j]}
 
 					temp_Var = collections.OrderedDict(sorted(temp_Var.items()))          # Contains that previously defined dictionary, with columns sorted in alphabetically order
-					table_To_Be_Written = mongo_DB_Chicago["loc" + str(i)]                # references the table into which that data will be written
+					table_To_Be_Written = mongo_DB_Chicago["loc_3_" + str(i)]                # references the table into which that data will be written
 					table_To_Be_Written.insert_one(temp_Var)                              # write it now
 			else:
-				print "Table 'loc" + str(i) + "' already exists.. Skipping the creation of that table"
+				print "Table 'loc_3_" + str(i) + "' already exists.. Skipping the creation of that table"
 
 
 def reset_Data_Counter():

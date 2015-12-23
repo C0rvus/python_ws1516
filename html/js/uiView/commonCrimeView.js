@@ -15,7 +15,11 @@ mainController.commonCrimeView = (function () {
                 },
                 //colors:["#00BF77","#0B67BA","#FF9500","#FF4F00"],
                 title: {
-                    text: false
+                    text: 'Most common crimes',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: 'Shows the most common crimes during the years'
                 },
                 credits: {
                     enabled: false
@@ -27,7 +31,8 @@ mainController.commonCrimeView = (function () {
                     min: 0,
                     title: {
                         text: false
-                    }
+                    },
+                    reversedStacks: false
                 },
                 plotOptions: {
                     column: {
@@ -47,7 +52,7 @@ mainController.commonCrimeView = (function () {
                 series: data.series
             });
         },
-        
+
         init = function (data, chartType) {
             console.log("commonCrimeView is up " + data);
             initModules(data, chartType);
