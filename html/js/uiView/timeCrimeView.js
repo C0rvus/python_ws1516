@@ -38,13 +38,13 @@ mainController.timeCrimeView = (function () {
                 plotOptions: {
                     line: {
                         dataLabels: {
-                            enabled: true
+                            enabled: false
                         },
-                        enableMouseTracking: false
+                        enableMouseTracking: true
                     }
                 },
                 tooltip: {
-                    valueSuffix: '°C'
+                    valueSuffix: ' Crimes'
                 },
                 legend: {
                     layout: 'vertical',

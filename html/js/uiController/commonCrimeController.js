@@ -62,8 +62,8 @@ mainController.commonCrimeController = (function () {
         },
 
         init = function () {
-            _initSelectFields();
-            _initEvents();
+            //_initSelectFields();
+            //_initEvents();
             _getData();
             return that;
         };
