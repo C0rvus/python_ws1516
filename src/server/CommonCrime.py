@@ -14,13 +14,14 @@ class CommonCrime:
         for doc in collection.find():
             for key, value in doc.iteritems():
                 if(key == "year"):
-                    temp = [key,value]
-                    minList.append(temp)
-                    dictlist.append(minList)
-                    minList = []
+                        temp = [key,value]
+                        minList.append(temp)
+                        dictlist.append(minList)
+                        minList = []
                 else:
-                    temp = [key,value]
-                    minList.append(temp)
+                    if(key != "_id"):
+                        temp = [key,value]
+                        minList.append(temp)
         crimeList = []
         for year in dictlist:
             for crime in year:
@@ -30,6 +31,8 @@ class CommonCrime:
 
 
         data["series"] = crimeList
-        return data
+        print data
+        json_data = json.dumps(data)
+        return json_data
 
 

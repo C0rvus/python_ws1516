@@ -15,6 +15,7 @@ class PrecentageCrime:
             subData['name'] = str(year)
             mainArray.append(subData)
         data['series'] = mainArray
+
         json_data = json.dumps(data)
 
         return json_data
