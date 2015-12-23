@@ -6,7 +6,7 @@ mainController.commonCrimeController = (function () {
         chartType = "column",
         selectedYear = 2001,
         topic = "commonCrime",
-        urlRequest = "http://52.29.118.210:5000/" + topic + "/" + "year/" + selectedYear
+        urlRequest = "http://52.29.118.210:5000/" + topic
 
         init = function () {
             _initSelectFields();
