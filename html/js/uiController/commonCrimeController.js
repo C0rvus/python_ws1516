@@ -30,7 +30,7 @@ mainController.commonCrimeController = (function () {
         },
 
         _initSelectFields = function () {
-            _createSelectField(years, 'YearSelect');
+            //_createSelectField(years, 'YearSelect');
             _createSelectField(charts, 'ChartSelect');
         },
 
