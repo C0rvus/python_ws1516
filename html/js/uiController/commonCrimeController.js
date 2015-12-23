@@ -29,11 +29,6 @@ mainController.commonCrimeController = (function () {
             }
         },
 
-        _initSelectFields = function () {
-            //_createSelectField(years, 'YearSelect');
-            _createSelectField(charts, 'ChartSelect');
-        },
-
         _initView = function (data) {
             commonCrimeView = mainController.commonCrimeView.init(data, chartType);
         },
@@ -57,13 +52,7 @@ mainController.commonCrimeController = (function () {
             _getData();
         },
 
-        _initEvents = function () {
-            $("#commonCrimeButton").click(_buildUrl);
-        },
-
         init = function () {
-            //_initSelectFields();
-            //_initEvents();
             _getData();
             return that;
         };

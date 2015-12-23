@@ -34,6 +34,12 @@ mainController.commonCrimeView = (function () {
                         stacking: 'percent'
                     }
                 },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
                 tooltip: {
                     pointFormat: '<span style="color:<{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.000f}%)<br/>',
                     shared: true

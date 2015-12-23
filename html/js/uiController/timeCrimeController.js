@@ -31,7 +31,6 @@ mainController.timeCrimeController = (function () {
             });
         },
 
-
         init = function () {
             _getData();
             return that;
