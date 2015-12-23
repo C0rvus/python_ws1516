@@ -11,7 +11,7 @@ class LocationCrime:
         collection = db.get_collection("loc" + "2005")
         for element in collection.find():
             if not element["Longitude"] == "nan":
-                coordinate = {"long":element["Longitude"],"lat":element["Latitude"],"weight":element["Count"]}
+                coordinate = {"lng":element["Longitude"],"lat":element["Latitude"],"weight":element["Count"]}
                 mainArray.append(coordinate)
         data['series'] = mainArray
         json_data = json.dumps(data)
