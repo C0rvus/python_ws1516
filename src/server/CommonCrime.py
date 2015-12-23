@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 import json
-import numpy as np
 
 class CommonCrime:
 
