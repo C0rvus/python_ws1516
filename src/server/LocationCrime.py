@@ -8,7 +8,7 @@ class LocationCrime:
         db = client['dataDump']
         data = {}
         mainArray = []
-        collection = db.get_collection("loc" + year)
+        collection = db.get_collection("loc" + str(year))
         for element in collection.find():
             if not element["Longitude"] == "nan":
                 coordinate = {"lng":element["Longitude"],"lat":element["Latitude"],"weight":element["Count"]}
