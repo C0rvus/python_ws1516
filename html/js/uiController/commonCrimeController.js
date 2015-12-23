@@ -55,6 +55,7 @@ mainController.commonCrimeController = (function () {
         },
 
         _initView = function (data) {
+          console.log("dhfudshfiuhsdiufhsdiufhsiudfhiusehfiuhsdifu");
           commonCrimeView = mainController.commonCrimeView.init(data,chartType);
         }
 
