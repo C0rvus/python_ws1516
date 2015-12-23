@@ -1,14 +1,13 @@
-mainController.mapView = (function () {  
+mainController.mapView = (function () {
       var that = {},
-      map,
-      heatmap
-      
+      heatmap,
+      map = new google.maps.Map(document.getElementById("crime-map"), {
+          center: {lat: 41.855363, lng: -87.636700},
+          zoom: 9
+      }),
+
       init = function (data) {
         document.getElementById("crime-map").style.height = "500px";
-        map = new google.maps.Map(document.getElementById("crime-map"), {
-            center: {lat: 41.855363, lng: -87.636700},
-            zoom: 9
-        });
         heatmap = new google.maps.visualization.HeatmapLayer({
             data: _getPoints(data),
             map: map
@@ -26,11 +25,11 @@ mainController.mapView = (function () {
         return c;
 
         //location: new google.maps.LatLng(37.782, -122.447), weight: 0.5}
-        
-      }
-      //google.maps.event.addDomListener(window, 'load', init); 
 
-      
+      }
+      //google.maps.event.addDomListener(window, 'load', init);
+
+
     that.init = init;
     return that;
 })();
