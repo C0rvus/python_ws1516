@@ -3,7 +3,7 @@ mainController.timeCrimeController = (function () {
         data = null,
         selectedYear = 2001,
         topic = "timeCrime",
-        urlRequest = "http://52.29.118.210:5000/" + topic
+        urlRequest = "http://52.29.118.210:5000/" + topic,
 
         init = function () {
             _getData();

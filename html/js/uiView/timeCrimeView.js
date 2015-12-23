@@ -1,6 +1,6 @@
 mainController.timeCrimeView = (function () {
       var that = {},
-      years = [2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014]
+      years = [2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
 
       init = function (data) {
           console.log("timeCrimeView is up "  + data);
@@ -9,7 +9,7 @@ mainController.timeCrimeView = (function () {
       },
 
       initModules = function (data) {
-          $('#time-chart').highcharts({
+          $('#timeContainer').highcharts({
               title: {
                   text: 'Hourly crime rate',
                   x: -20 //center

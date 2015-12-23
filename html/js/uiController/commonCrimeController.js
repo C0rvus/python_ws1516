@@ -6,7 +6,7 @@ mainController.commonCrimeController = (function () {
         chartType = "column",
         selectedYear = 2001,
         topic = "commonCrime",
-        urlRequest = "http://52.29.118.210:5000/" + topic
+        urlRequest = "http://52.29.118.210:5000/" + topic,
 
         init = function () {
             _initSelectFields();
@@ -21,7 +21,7 @@ mainController.commonCrimeController = (function () {
 
         _initSelectFields = function () {
           _createSelectField(years, 'YearSelect');
-          _createSelectField(charts, 'ChartSelect')
+          _createSelectField(charts, 'ChartSelect');
         },
 
         _createSelectField = function (array, nameSelection) {
@@ -42,7 +42,6 @@ mainController.commonCrimeController = (function () {
         },
 
         _getData = function () {
-          console.log("hhhhhhhhhuh");
           $.ajax({
               url: urlRequest,
               type: 'GET',
