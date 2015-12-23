@@ -1,5 +1,5 @@
-from TimeCrime import TimeCrime
+from CommonCrime import CommonCrime
 
-tCrime = TimeCrime()
+cCrime = CommonCrime()
 
-print tCrime.main_Method(2001)
+print cCrime.main_Method()
