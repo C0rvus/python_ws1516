@@ -3,6 +3,7 @@ import json
 
 class CommonCrime:
 
+    @property
     def main_Method(self):
         client = MongoClient('localhost', 27017)
         db = client['dataDump']
@@ -10,7 +11,6 @@ class CommonCrime:
         data = {}
         dictlist = []
         minList = []
-        yearArray = ['2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014']
         for doc in collection.find():
             for key, value in doc.iteritems():
                 if(key == "year"):
@@ -29,10 +29,18 @@ class CommonCrime:
                     crimeListElement = {"name":crime[0],"data":[crime[1]]}
                     crimeList.append(crimeListElement)
 
+        crimeMergeList = []
+        #crimeMergeList.append(crimeList[0])
+        sensorMain = False
+        for crimeElement in crimeList:
+            sensorMain = False
+            for crimeMergeElement in crimeMergeList:
+                if crimeMergeElement["name"] == crimeElement["name"]:
+                    crimeMergeElement["data"].append(crimeElement["data"][0])
+                    sensorMain = True
+            if sensorMain is not True:
+                crimeMergeList.append(crimeElement)
 
-        data["series"] = crimeList
-        print data
+        data["series"] = crimeMergeList
         json_data = json.dumps(data)
         return json_data
-
-

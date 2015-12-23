@@ -3,4 +3,4 @@ from src.server.DemoClass import DemoClass
 
 theclass = DemoClass()
 
-print theclass.main_Method()
+print theclass.main_Method
