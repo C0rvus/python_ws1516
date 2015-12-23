@@ -8,10 +8,10 @@ class LocationCrime:
         db = client['dataDump']
         data = {}
         mainArray = []
-        collection = db.get_collection("loc" + str(year))
+        collection = db.get_collection("loc" + "2005")
         for element in collection.find():
             if not element["Longitude"] == "nan":
-                coordinate = {"long":element["Longitude"],"lat":element["Latitude"]}
+                coordinate = {"long":element["Longitude"],"lat":element["Latitude"],"weight":element["Count"]}
                 mainArray.append(coordinate)
         data['series'] = mainArray
         json_data = json.dumps(data)
