@@ -1,5 +1,5 @@
-from CommonCrime import CommonCrime
+from LocationCrime import LocationCrime
 
-cCrime = CommonCrime()
+cCrime = LocationCrime()
 
-print cCrime.main_Method
+print cCrime.main_Method(2001)
