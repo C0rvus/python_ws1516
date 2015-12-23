@@ -2,7 +2,7 @@ mainController.mapController = (function() {
 	var that = {},
 	data = null,
 	years = [2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
-	selectedYear = 2011,
+	selectedYear = 2001,
 	urlRequest = "http://52.29.118.210:5000/locationCrime/year/" + selectedYear,
 
 	init = function() {
@@ -18,9 +18,8 @@ mainController.mapController = (function() {
 
 	_buildUrl = function() {
 		selectedYear = $("#mapYearSelect").val();
-		console.log(selectedYear);
         urlRequest = "http://52.29.118.210:5000/locationCrime/year/" + selectedYear;
-        console.log(urlRequest);
+        //console.log(urlRequest);
         _getData();
 	},
 
