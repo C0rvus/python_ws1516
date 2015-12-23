@@ -37,11 +37,12 @@ mainController.commonCrimeController = (function () {
         _buildUrl = function () {
           selectedYear = $("#" + topic + "YearSelect").val();
           chartType = $("#" + topic + "ChartSelect").val();
-          urlRequest = "http://52.29.118.210:5000/"  + topic + "/" + "year/" + selectedYear;
+          urlRequest = "http://52.29.118.210:5000/" + topic;
           _getData();
         },
 
         _getData = function () {
+          console.log("hhhhhhhhhuh");
           $.ajax({
               url: urlRequest,
               type: 'GET',
