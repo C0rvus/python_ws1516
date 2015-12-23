@@ -9,7 +9,7 @@ mainController.timeCrimeView = (function () {
       },
 
       initModules = function (data) {
-          $('#timeContainer').highcharts({
+          $('#time-chart').highcharts({
               title: {
                   text: 'Hourly crime rate',
                   x: -20 //center
