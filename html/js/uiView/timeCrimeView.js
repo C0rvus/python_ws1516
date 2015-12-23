@@ -5,21 +5,13 @@ var mainController,
 mainController.timeCrimeView = (function () {
     'use strict';
     var that = {},
-        years = [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014],
-
-
 
         initModules = function (data) {
             $('#timeContainer').highcharts({
                 title: {
-                    text: 'Hourly crime rate',
-                    x: -20 //center
-                },
-                subtitle: {
-                    text: 'Cumulated yearly number of crimes at the specific time'
+                    text: 'HOURLY CRIME RATE'
                 },
                 xAxis: {
-                    type: 'datetime',
                     title: {
                         text: 'Time'
                     },
