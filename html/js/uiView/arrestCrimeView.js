@@ -36,8 +36,10 @@ mainController.arrestCrimeView = (function () {
                 series: data.series
             });
         },
+        
         init = function (data, chartType) {
             console.log("arrestCrimeView is up " + data);
+            console.log(data);
             initModules(data);
             return that;
         };
