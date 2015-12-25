@@ -3,7 +3,6 @@ import json
 
 class CommonCrime:
 
-    @property
     def main_Method(self):
         client = MongoClient('localhost', 27017)
         db = client['dataDump']
@@ -40,6 +39,10 @@ class CommonCrime:
                     sensorMain = True
             if sensorMain is not True:
                 crimeMergeList.append(crimeElement)
+                
+        for year in crimeMergeList:
+            year['data'] = [int(x) for x in year['data']]
+            year['data'].sort()
 
         data["series"] = crimeMergeList
         json_data = json.dumps(data)
