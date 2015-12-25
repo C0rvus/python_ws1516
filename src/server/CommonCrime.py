@@ -29,7 +29,6 @@ class CommonCrime:
                     crimeList.append(crimeListElement)
 
         crimeMergeList = []
-        #crimeMergeList.append(crimeList[0])
         sensorMain = False
         for crimeElement in crimeList:
             sensorMain = False
@@ -39,6 +38,10 @@ class CommonCrime:
                     sensorMain = True
             if sensorMain is not True:
                 crimeMergeList.append(crimeElement)
+
+        for year in crimeMergeList:
+            year['data'] = [int(x) for x in year['data']]
+            year['data'].sort()
 
         data["series"] = crimeMergeList
         json_data = json.dumps(data)
