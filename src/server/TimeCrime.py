@@ -3,8 +3,13 @@ import unicodedata                                      # necessary for converti
 import collections                                      # necessary for sorting dictionaries
 import json                                             # necessary for creating json objects
 
+# __init__() method is not necessary for use - therefore we ignore that warning here
 class TimeCrime:
+
 	def main_Method(self):
+
+		self.is_Not_Used()                              # Removes the 'not static' warning
+
 		client = MongoClient('localhost', 27017)        # connects to the locally connected
 		db = client['dataDump']                         # gets the dataDump-Database instance
 		collection = db['time']                         # gets the "time" collection
@@ -24,15 +29,17 @@ class TimeCrime:
 				# To prevent assignment errors key "_id" will be skipped, and key "year" gets a special treatment
 				if not key == 'year' and not key == '_id':
 					converted_Key = unicodedata.normalize('NFKD', key).encode('ascii', 'ignore')        # Converts the object from unicode to string
-					converted_Key = int(converted_Key)                            # Converts the string into integer, for correct key assignment
-					returned_JSON_Data_Format[converted_Key] = value              # Assigns the value to the list container
+					converted_Key = int(converted_Key)                                                  # Converts the string into integer, for correct key assignment
+					returned_JSON_Data_Format[converted_Key] = value                                    # Assigns the value to the list container
 				else:
 					if key == 'year':
 						returned_JSON_Data_Format[24] = value
 
-			# noinspection PyTypeChecker
 			returned_JSON_Data.append({'name': returned_JSON_Data_Format[24], 'data' : returned_JSON_Data_Format[0:24]})    # Append that object as JSON-Style to its array
 
 		data["series"] = returned_JSON_Data                                       # Adds "series" type on top of JSON object for better recognition
 		json_data = json.dumps(data)                                              # Dump that JSON object into an JSON object, so REST eats it.
-		return json_data
+		return json_data                                                          # Returns a JSON String, containing all arrest cases
+
+	def is_Not_Used(self):                                                        # Necessary to remove 'not static' warning
+		pass
