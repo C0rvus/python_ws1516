@@ -28,7 +28,7 @@ class create_Common_Crime_Table:
 			# Iterate over every table / collection and get the amount of arrested crimes
 			for i in range (data_Counter_Starting, data_Counter_Ending):
 
-				print "Creating comonc entries for the year " + str(i)
+				print "Creating commonc entries for the year " + str(i)
 				collection = mongo_DB_Chicago[str(i)]                                             # Gets the collection depending on the defined variable name (i.e. 2001)
 				selector = collection.find()                                                      # Give me all entries in that table
 
