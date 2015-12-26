@@ -1,5 +1,3 @@
-# TODO: folding comments : select Text and press CTRL + ALT + T
-
 from pymongo import MongoClient                         # necessary to interact with MongoDB
 import pandas as pd                                     # necessary for fast .csv-processing
 import collections                                      # necessary for sorting dictionaries
@@ -11,7 +9,7 @@ mongo_DB_Collections = ""                               # will be modified by ge
 mongo_DataSet_Row = {}                                  # will be modified by generate_DataSet_To_Be_Written_To_DB()
 
 
-csv_Loaded_CSV = ""
+csv_Loaded_File = ""
 data_Counter_Starting = 0                               # will be modified by reset_Data_Counter
 data_Counter_In_Between = 0                             # will be modified by reset_Data_Counter
 data_Counter_Ending = 0                                 # will be modified by reset_Data_Counter
@@ -26,9 +24,13 @@ csv_Actual_Row = ""                                     # Contains the actual, p
 
 # <editor-fold desc="Reads CSV data">
 # Source: http://pandas.pydata.org/pandas-docs/stable/api.html
+# Method works the following way:
+# 1. It initially resets all counters through method "reset_Data_Counter()"
+# 2. It iterates over all files .csv-files in the datasets folder.
+# 3. By iterating of an single .csv-file the method "process_CSV_Data()" gets called, which will, on a long term base, write the content of the csv file, regarding the 'csv_Columns_To_Keep" into the DB.
 # </editor-fold>
 def read_CSV_Data():
-	global csv_Loaded_CSV                               # references the global variable to make use of it locally
+	global csv_Loaded_File                               # references the global variable to make use of it locally
 	global mongo_DB_Collections                         # references the global variable to make use of it locally
 	global data_Counter_In_Between                      # references the global variable to make use of it locally
 
@@ -37,7 +39,7 @@ def read_CSV_Data():
 	for i in range(data_Counter_Starting, data_Counter_Ending):                                       # Iterates over all .CSV files
 		data_Counter_In_Between+= 1                                                                  # This counter is necessary for writing data into the correct tables . Tables is named accorded to this var
 
-		csv_Loaded_CSV = pd.read_csv('..\datasets\Crimes_-_' + str(i) +'.csv')
+		csv_Loaded_File = pd.read_csv('..\datasets\Crimes_-_' + str(i) +'.csv')
 		if not any(str(data_Counter_In_Between) in s for s in mongo_DB_Collections):                 # Whenever the table already exists, skip that csv file!
 			print "Crime data for year " + str(i) + "does not exist yet - generating tables now."
 			process_CSV_Data()
@@ -53,27 +55,25 @@ def read_CSV_Data():
 #   3.2. This created dictionary element immediately gets written into the mongoDB
 # </editor-fold>
 def process_CSV_Data():
-	global csv_Loaded_CSV                               # references the global variable to make use of it locally
+	global csv_Loaded_File                               # references the global variable to make use of it locally
 	global csv_Columns_To_Keep                          # references the global variable to make use of it locally
 	global csv_Actual_Row                               # references the global variable to make use of it locally
 	global mongo_DataSet_Row                            # references the global variable to make use of it locally
 
 
-	csv_Processed = csv_Loaded_CSV[csv_Columns_To_Keep]            # Reduce the read csv data to only contain the previously defined columns
+	csv_Processed = csv_Loaded_File[csv_Columns_To_Keep]            # Reduce the read csv data to only contain the previously defined columns
 	csv_Processed = csv_Processed.T.to_dict('list')                # Converts the newly defined csv-data to a list (necessary for easier post-processing)
 
 	for key in sorted(csv_Processed):
 		csv_Actual_Row = csv_Processed[key]                        # Contains the actual iterated row
-		create_Dictionary_For_CSV_To_DB_Write()                           # Creates a "dictionary" out of the given file data
-		write_CSV_Data_To_DB()                                         # Writes that actually processed / iterated row into the MongoDB
-
-
+		create_Dictionary_For_CSV_To_DB_Write()                    # Creates a "dictionary" out of the given file data
+		write_CSV_Data_To_DB()                                     # Writes that actually processed / iterated row into the MongoDB
 
 # </editor-fold>
 
-# <editor-fold desc="MongoDB operations happen inside here">
+# <editor-fold desc="MongoDB behaviour for CSV data operations happen inside here">
 
-# <editor-fold desc="Connecting to MongoDB-Server">
+# <editor-fold desc="Connects to MongoDB-Server">
 # Connects to the specified MongoDB-Server
 # We can replace localhost with an IP-Adress, whenever the database runs somewhere else
 # Alternative connect method: client = MongoClient('mongodb://localhost:27017/')
@@ -146,6 +146,20 @@ def write_CSV_Data_To_DB():
 
 # </editor-fold>
 
+# <editor-fold desc="Creates pre calculated tables">
+# Necessary to not iterate over whole data set, when webpage is executed
+
+# <editor-fold desc="Precalculated table / collection 'arrest' will be created here">
+# This collection contains the amount of crimes which lead to arrest
+# The method works the following way:
+# 1. Global DB_Instance "mongo_DB_Chicago" will be referenced first
+# 2. Now the data counter will be reset, so data can be retrieved from the correct tables later on
+# 3. Checks whether that collection already exists.
+#   3.1. If it already exists skip the creation of that table
+#   3.2. If it does not already exist: Create the table as described in step 4
+# 4. Reference the correct collection, sum up the entries of all "Arrest" entries and write it into the db, with its apropriate year
+
+# </editor-fold>
 def create_Arrest_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
@@ -172,6 +186,19 @@ def create_Arrest_Table():
 
 		print "Table 'arrest' already exists.. Skipping the creating of that table"
 
+# <editor-fold desc="Precalculated table / collection 'time' will be created here">
+# This collection contains the amount of crimes per day time on a 24 hour basis
+# This method works the following way:
+# 1. Global DB_Instance "mongo_DB_Chicago" will be referenced first
+# 2. Now the data counter will be reset, so data can be retrieved from the correct tables later on
+# 3. Checks whether that collection already exists.
+#   3.1. If it already exists skip the creation of that table
+#   3.2. If it does not already exist: Create the table as described in step 4
+# 4. Now an empty dictionary will be created with 24 entry possibilities. It will be filled later on
+# 5. Now the current collection with all its entires will be retrieved, filtered by "Date" and converted from unicode to string
+# 6. Afterwards the retrieved time will be split into various arrays and the timestamp will be correctly calculated depending on the 12h format (AM / PM)
+# 7. After each document has been iterated a counter depending on the hours time will be raised and that entry will be written into the database
+# </editor-fold>
 def create_Time_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
@@ -193,7 +220,7 @@ def create_Time_Table():
 
 			# Gibt mir alle Eintraege zurueck, die Arrest: True sind
 			for document in cursor:
-				date_Var = document.get("Date")                                                # only get me the table with the column "Date"
+				date_Var = document.get("Date")                                               # only get me the table with the column "Date"
 				date_Var = unicodedata.normalize('NFKD', date_Var).encode('ascii', 'ignore')  # because it is in unicode-style, we have to convert it first. [-> (i.e.) 02/26/2001 12:00:00 PM]
 				# Source: https://stackoverflow.com/questions/1207457/convert-a-unicode-string-to-a-string-in-python-containing-extra-symbols
 
@@ -339,6 +366,19 @@ def create_Time_Table():
 	else:
 		print "Table 'time' already exists.. Skipping the creating of that table"
 
+# <editor-fold desc="Precalculated table / collection 'commonc' will be created here">
+# Creates the pre calculated table which contains all crime types with its number of appearance for every year
+# The method works the following way:
+# 1. Global DB_Instance "mongo_DB_Chicago" will be referenced first
+# 2. Now the data counter will be reset, so data can be retrieved from the correct tables later on
+# 3. Checks whether that collection already exists.
+#   3.1. If it already exists skip the creation of that table
+#   3.2. If it does not already exist: Create the table as described in step 4
+# 4. Get that collection for the current year and filter it by only selecting the "primary type" column and convert it from unicode into string
+# 5. Now check whether that "crime type" already exists in "types_array".
+#   5.1. If not, then create that entry in "types_Array" on that specific index and raise the amount and create the number 1 in "types_Array_Count"
+#   5.2. If yes, simply increase the counter in "types_Array_Count"
+# </editor-fold>
 def create_Common_Crime_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
@@ -351,14 +391,14 @@ def create_Common_Crime_Table():
 
 			print "Creating comonc entries for the year " + str(i)
 			collection = mongo_DB_Chicago[str(i)]                                 # Gets the collection depending on the defined variable name (i.e. 2001)
-			selector = collection.find()                                          # Give me all entries in that table with the attribute "Arrest" = True
+			selector = collection.find()                                          # Give me all entries in that table
 			# noinspection PyTypeChecker
-			types_Array = []
-			types_Array_Count = []
-			types_Dict_Style = dict({})
+			types_Array = []                                                      # The various crime types are defined here
+			types_Array_Count = []                                                # The amount of crimes is defined here
+			types_Dict_Style = dict({})                                           # The final dictionary which will be written into the database later on
 			for document in selector:
 				type_Var = document.get("Primary Type")                                       # only get me the table with the column "Primary Type"
-				type_Var = unicodedata.normalize('NFKD', type_Var).encode('ascii', 'ignore')  # because it is in unicode-style, we have to convert it first. [-> (i.e.) 02/26/2001 12:00:00 PM]
+				type_Var = unicodedata.normalize('NFKD', type_Var).encode('ascii', 'ignore')  # because it is in unicode-style, we have to convert it first.
 
 				# Source: https://stackoverflow.com/questions/7571635/fastest-way-to-check-if-a-value-exist-in-a-list
 
@@ -387,25 +427,41 @@ def create_Common_Crime_Table():
 			types_Dict_Style = collections.OrderedDict(sorted(types_Dict_Style.items()))              # Contains that previously defined dictionary, with columns sorted in alphabetically order
 
 			print types_Dict_Style
-			table_To_Be_Written = mongo_DB_Chicago["commonc"]                      # references the table into which that data will be written
-			table_To_Be_Written.insert_one(types_Dict_Style)                       # write it now
+			table_To_Be_Written = mongo_DB_Chicago["commonc"]                                         # references the table into which that data will be written
+			table_To_Be_Written.insert_one(types_Dict_Style)                                          # Write that dictionary into the database now
 
 	else:
 		print "Table 'commonc' already exists.. Skipping the creation of that table"
 
+# <editor-fold desc="Precalculated table / collection 'locXY' will be created here">
+# Creates initial tables for usage of heatmap on our website.
+# To radically increase its speed the coordinates will be pre calculated in that to table and rounded to three digits after the comma
+# The method works the following way:
+# 1. Global DB_Instance "mongo_DB_Chicago" will be referenced first
+# 2. Now the data counter will be reset, so data can be retrieved from the correct tables later on
+# 3. Checks whether that collection already exists.
+#   3.1. If it already exists skip the creation of that table
+#   3.2. If it does not already exist: Create the table as described in step 4
+# 4. Get that collection for the current year
+# 5. Now iterate over every document and get the values from "Latitude", "Longitude" and round them to 3 units after the comma
+# 6. Now put them together as pair and check whether that poair already exists in "loc_Array".
+#   6.1. If no, add that pair into the array and create number "1" for the first apperance of it in "loc_Array_Count".
+#   6.2. If yes, simply raise that counter in "loc_Array_Count" by one
+# 7. After the iteration of all documents is done simply write every pair of coordinates with its number of appearance into the database, document by document.
+# </editor-fold>
 def create_Location_Table():
 	global mongo_DB_Chicago                         # references the global variable to make use of it locally
 	reset_Data_Counter()                            # Resets the CSV-Values to its initial state.. necessary for correct table writing
 
-	loc_Array = []
-	loc_Array_Count = []
+	loc_Array = []                                  # Contains pairs of "Longitude" and "Latitude"
+	loc_Array_Count = []                            # Contains a corresponding number, which describes the amount
 
 
 	# Iterate over every table / collection and get the amount of arrested crimes
 	for i in range (data_Counter_Starting, data_Counter_Ending):
 
 		# Checks whether the table / collection "locX" already exists.. If not then create that table / collection
-			if not any(str("loc_3_" + str(i)) in s for s in mongo_DB_Collections):                   # Whenever the table already exists -> do nothing
+			if not any(str("loc" + str(i)) in s for s in mongo_DB_Collections):       # Whenever the table already exists -> do nothing
 
 				print "Creating location entries for the year " + str(i)
 
@@ -417,8 +473,8 @@ def create_Location_Table():
 					loc_Lat_Var = document.get("Latitude")                                                # only get me the the column "Latitude"
 					loc_Lon_Var = document.get("Longitude")                                               # only get me the the column "Longitude"
 
-					rounded_Loc_Lat_Var = "%.3f" % loc_Lat_Var                                            # %.3f takes about 15 minutes..
-					rounded_Loc_Lon_Var = "%.3f" % loc_Lon_Var                                            # %.3f takes about 15 minutes..
+					rounded_Loc_Lat_Var = "%.3f" % loc_Lat_Var                                            # Round to 3 units after the comma
+					rounded_Loc_Lon_Var = "%.3f" % loc_Lon_Var                                            # Round to 3 units after the comma
 					type_Var = [rounded_Loc_Lat_Var, rounded_Loc_Lon_Var]
 
 
@@ -448,24 +504,29 @@ def create_Location_Table():
 			else:
 				print "Table 'loc_3_" + str(i) + "' already exists.. Skipping the creation of that table"
 
+# </editor-fold>
 
+# <editor-fold desc="Miscellaneous methods are defined here">
+# <editor-fold desc="Resets year counter">
+# Resets the data counter, so necessary tables can be created within correct numeric order.
+# There is a counter, which will be initially called whenever the csv data will be read. To make the other methods work, the counter (2001 until 2014) needs to be reset.
+# </editor-fold>
 def reset_Data_Counter():
-	global data_Counter_Starting                             # references the global variable to make use of it locally
-	global data_Counter_In_Between                           # references the global variable to make use of it locally
-	global data_Counter_Ending                               # references the global variable to make use of it locally
+	global data_Counter_Starting                       # references the global variable to make use of it locally
+	global data_Counter_In_Between                     # references the global variable to make use of it locally
+	global data_Counter_Ending                         # references the global variable to make use of it locally
 
-	data_Counter_Starting = 2001                             # The starting number correspondig to our first data set        (Crimes_-_2001.csv)
-	data_Counter_In_Between = 2000                           # An in between counter which is used by dynamically generating / checking tables according to processed csv data
-	data_Counter_Ending = 2015                               # The ending number corresponding to our last data set          (Crimes_-_2014.csv)
+	data_Counter_Starting = 2001                       # The starting number correspondig to our first data set        (Crimes_-_2001.csv)
+	data_Counter_In_Between = 2000                     # An in between counter which is used by dynamically generating / checking tables according to processed csv data
+	data_Counter_Ending = 2015                         # The ending number corresponding to our last data set          (Crimes_-_2014.csv)
+# </editor-fold>
 
+connect_To_MongoDB()                                   # Connects to the mongoDB
+get_DB_Instance()                                      # Gets and declares the mongoDB-Instance
+get_DB_Collections()                                   # Gets all existent collections (necessary to skip unnecessary / redundant writes into mongoDB)
 
-
-connect_To_MongoDB()                                    # Connects to the mongoDB
-get_DB_Instance()                                       # Gets and declares the mongoDB-Instance
-get_DB_Collections()                                    # Gets all existent collections (necessary to skip unnecessary / redundant writes into mongoDB)
-
-#read_CSV_Data()                                        # Reads in those csv-Data and processes them afterwards.. This is only necessary once for the initial mongoDB build up
-#create_Arrest_Table()                                  # Creates an extra table which contains the amount of all crimes which lead to an arrest.
-#create_Time_Table()                                    # Creates an extra table which contains the amount of crimes during day hours
-#create_Common_Crime_Table()                            # Creates an extra table which contains the crime categories with its number of occurrence for every year
+read_CSV_Data()                                        # Reads in those csv-Data and processes them afterwards.. This is only necessary once for the initial mongoDB build up
+create_Arrest_Table()                                  # Creates an extra table which contains the amount of all crimes which lead to an arrest.
+create_Time_Table()                                    # Creates an extra table which contains the amount of crimes during day hours
+create_Common_Crime_Table()                            # Creates an extra table which contains the crime categories with its number of occurrence for every year
 create_Location_Table()                                # Creates extra tables. according to year, which contains longitude and latutide rounded to 2 units after comma, and the amount of occurrence in that dataset
