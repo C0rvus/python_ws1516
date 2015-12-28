@@ -20,7 +20,7 @@ mainController.arrestCrimeView = (function () {
                   x: -20 //center
               },
               subtitle: {
-                  text: 'Shows how many crimes are carred out'
+                  text: 'Shows how many crimes are carried out'
               },
               tooltip: {
                   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -30,13 +30,22 @@ mainController.arrestCrimeView = (function () {
                       allowPointSelect: true,
                       cursor: 'pointer',
                       dataLabels: {
-                          enabled: false
-                      },
-                      showInLegend: true
+                          enabled: true,
+                          format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                          style: {
+                              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                          }
+                      }
                   }
               },
+              legend: {
+                  layout: 'vertical',
+                  align: 'right',
+                  verticalAlign: 'middle',
+                  borderWidth: 0
+              },
               series: [{
-                  
+
                   data: [{"y": 141880, "name": "2001"},
                   {"y": 141518, "name": "2002"},
                   {"y": 141557, "name": "2003"},
