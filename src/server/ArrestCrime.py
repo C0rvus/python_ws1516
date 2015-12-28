@@ -10,11 +10,13 @@ class ArrestCrime:
         client = MongoClient('localhost', 27017)                            # connects the the local database
         db = client['dataDump']                                             # refers to the database 'dataDump', which contains all necessary collections
         data = {}                                                           # data object, which will contain the "Series"-Type for correct parsing later on
+        subDataObject = {}
         mainArray = []
         for doc in db.get_collection("arrest").find():                      # Iterate of every document in table 'arrest'
             element = {"name": doc["year"],"y" : doc["arrests"]}
             mainArray.append(element)                                       # Append that dictionary to the list "mainArray"
-        data['series'] = mainArray
+        subDataObject['data'] = mainArray
+        data['series'] = subDataObject
         json_data = json.dumps(data)                                        # Dumps that object to be really in json-format
         return json_data                                                    # Returns a JSON String, containing all arrest cases
 
