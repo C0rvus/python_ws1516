@@ -16,14 +16,13 @@ mainController.arrestCrimeView = (function () {
                   type: 'pie'
               },
               title: {
-                  text: 'Arrest Crimes',
-                  x: -20 //center
+                  text: 'ARRESTS'
               },
               subtitle: {
-                  text: 'Shows how many crimes are carried out'
+                  text: 'Compares the quantity of arrests over the years'
               },
               tooltip: {
-                  pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                  pointFormat: 'Quantity: <b>{point.y}</b>'
               },
               plotOptions: {
                   pie: {
@@ -33,7 +32,7 @@ mainController.arrestCrimeView = (function () {
                           enabled: true,
                           format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                           style: {
-                              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                              color: 'black'
                           }
                       }
                   }
@@ -42,7 +41,10 @@ mainController.arrestCrimeView = (function () {
                   layout: 'vertical',
                   align: 'right',
                   verticalAlign: 'middle',
-                  borderWidth: 0
+                  borderWidth: 0,
+				  style: {
+						color: 'white'
+					},
               },
               series: [{
 

@@ -9,8 +9,17 @@ mainController.timeCrimeView = (function () {
         initModules = function (data) {
             $('#timeContainer').highcharts({
                 title: {
-                    text: 'HOURLY CRIME RATE'
+                    text: 'HOURLY CRIME RATE',
+					style: {
+						color: "white"
+					},
                 },
+				subtitle: {
+                  	text: 'Shows the quantity of comitted crimes at the given hour',
+					style: {
+						color: "white"
+					},
+              	},
                 chart: {
                     style: {
                         color: "white"
@@ -29,7 +38,10 @@ mainController.timeCrimeView = (function () {
                 },
                 yAxis: {
                     title: {
-                        text: 'Number of crimes'
+                        text: 'Number of crimes',
+						style: {
+							color: "white"
+						},
                     },
                     plotLines: [{
                         value: 0,

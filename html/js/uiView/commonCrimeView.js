@@ -15,8 +15,7 @@ mainController.commonCrimeView = (function () {
                 },
                 //colors:["#00BF77","#0B67BA","#FF9500","#FF4F00"],
                 title: {
-                    text: 'Most common crimes',
-                    x: -20 //center
+                    text: 'MOST COMMON CRIMES'
                 },
                 subtitle: {
                     text: 'Shows the most common crimes during the years'
