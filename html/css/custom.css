@@ -304,8 +304,17 @@ a:focus {
 }
 
 #location {
-    background-color: #F5F5F5;
-    color: #000;
+	padding-bottom: 0px;
+}
+
+#crime-map {
+	margin-top: 35px;
+	width: 100%;
+	height: auto;
+}
+
+#select-show {
+	margin-bottom: 35px;
 }
 
 @media(min-width:767px) {
