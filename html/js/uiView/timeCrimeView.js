@@ -15,10 +15,7 @@ mainController.timeCrimeView = (function () {
 					},
                 },
 				subtitle: {
-                  	text: 'Shows the quantity of comitted crimes at the given hour',
-					style: {
-						color: "white"
-					},
+                  	text: 'Shows the quantity of comitted crimes at the given hour'
               	},
                 chart: {
                     style: {
