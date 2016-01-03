@@ -45,8 +45,8 @@ mainController.commonCrimeView = (function () {
                     borderWidth: 0
                 },
                 tooltip: {
-                    pointFormat: '<span style="color:<{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.000f}%)<br/>',
-                    shared: true
+					pointFormat: '<span>{series.name}</span>: <b>{point.y}</b> ({point.percentage:.000f}%)<br/>',
+                    // shared: true
                 },
                 series: data.series
             });
