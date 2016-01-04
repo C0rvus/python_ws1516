@@ -1,5 +1,5 @@
-from ArrestCrime import ArrestCrime
+from CommonCrime import CommonCrime
 
-cCrime = ArrestCrime()
+cCrime = CommonCrime()
 
 print cCrime.main_Method()
