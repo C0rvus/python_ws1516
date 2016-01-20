@@ -293,6 +293,21 @@ a:focus {
     background-color: #42dca3;
 }
 
+.panel-default {
+	border-radius: 0px;
+	border-color: #42dca3;
+	background-color: #000;
+}
+
+.panel-default > .panel-heading {
+	background-color: #42dca3;
+	color: #fff;
+}
+
+#data-icon {
+	margin: 5px;
+}
+
 #crime {
     background-color: #F5F5F5;
     color: #000;
