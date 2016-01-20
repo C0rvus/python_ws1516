@@ -16,7 +16,7 @@ class NumberCrime:
 		for year in yearArray:
 			collectionCount = db.get_collection(year).count()
 			counter = counter + int(collectionCount)
-		return counter
+		return str(counter)
 
 	def is_Not_Used(self):                                                  # Necessary to remove 'not static' warning
 			pass
