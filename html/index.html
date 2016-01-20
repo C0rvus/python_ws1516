@@ -240,16 +240,28 @@
     </script>
 
     <script>
-      $({countNum: 99}).animate({countNum: 5173241}, {
-        duration: 8000,
-        easing:'linear',
-        step: function() {
-          $("#numberCount").text(Math.floor(this.countNum) + " / 5173241");
-        },
-        complete: function() {
-          $("#numberCount").text(Math.floor(this.countNum));
-        }
+      $.ajax({
+          url: "http://52.29.118.210:5000/numberCrime",
+          type: 'GET',
+          crossDomain: true,
+          dataType: 'text',
+          success: function (data) {
+            renderData(data);
+          }
       });
+
+      renderData = function (data) {
+        $({countNum: 99}).animate({countNum: data}, {
+          duration: 8000,
+          easing:'linear',
+          step: function() {
+            $("#numberCount").text(Math.floor(this.countNum) + " / " + data);
+          },
+          complete: function() {
+            $("#numberCount").text(Math.floor(this.countNum));
+          }
+        });
+      }
     </script>
 
 </body>
