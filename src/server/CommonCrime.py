@@ -58,8 +58,7 @@ class CommonCrime:
                         if(specCrime != "year"):
                             flag = True
                             crimeMergeElement["data"].append(crime[1])
-                if not (flag):
-                    if(specCrime != "year"):
+                if not (flag) or (specCrime != "year"):
                         crimeMergeElement["data"].append(0)
 
         data["series"] = crimeMergeList
