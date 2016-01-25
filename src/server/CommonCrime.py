@@ -16,17 +16,16 @@ class CommonCrime:
         minList = []
 
         for doc in collection.find():                                       # Iterate over every document
-            if doc["year"] != 2014:
-                for key, value in doc.iteritems():                              # For every key, value in each document
-                    if key == "year":
-                            temp = [key,value]
-                            minList.append(temp)
-                            dictlist.append(minList)
-                            minList = []
-                    else:
-                        if key != "_id":                                        # Do not process _id - key here
-                            temp = [key,value]
-                            minList.append(temp)
+            for key, value in doc.iteritems():                              # For every key, value in each document
+                if key == "year":
+                        temp = [key,value]
+                        minList.append(temp)
+                        dictlist.append(minList)
+                        minList = []
+                else:
+                    if key != "_id":                                        # Do not process _id - key here
+                        temp = [key,value]
+                        minList.append(temp)
 
         crimeTypeList = []
         for year in dictlist:
@@ -59,7 +58,7 @@ class CommonCrime:
                             flag = True
                             crimeMergeElement["data"].append(crime[1])
                     flag = False
-                if (specCrime != "year"):
+                if (specCrime == "year"):
                     if not (flag):
                         crimeMergeElement["data"].append(0)
 
