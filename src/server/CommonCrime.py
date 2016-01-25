@@ -16,16 +16,17 @@ class CommonCrime:
         minList = []
 
         for doc in collection.find():                                       # Iterate over every document
-            for key, value in doc.iteritems():                              # For every key, value in each document
-                if key == "year":
-                        temp = [key,value]
-                        minList.append(temp)
-                        dictlist.append(minList)
-                        minList = []
-                else:
-                    if key != "_id":                                        # Do not process _id - key here
-                        temp = [key,value]
-                        minList.append(temp)
+            if doc["year"] != 2014:
+                for key, value in doc.iteritems():                              # For every key, value in each document
+                    if key == "year":
+                            temp = [key,value]
+                            minList.append(temp)
+                            dictlist.append(minList)
+                            minList = []
+                    else:
+                        if key != "_id":                                        # Do not process _id - key here
+                            temp = [key,value]
+                            minList.append(temp)
 
         crimeTypeList = []
         for year in dictlist:
@@ -47,18 +48,19 @@ class CommonCrime:
         for crime in crimeTypeList:
             crimeMergeList.append({"data":[],"name":crime})
 
-
         for crimeMergeElement in crimeMergeList:
             aktCrime = crimeMergeElement["name"]
             for year in mainArray:
                 flag = False
                 for crime in year:
                     specCrime = crime[0]
-                    if(specCrime == aktCrime):
-                        if(specCrime != "year"):
+                    if (specCrime != "year"):
+                        if(specCrime == aktCrime):
                             flag = True
                             crimeMergeElement["data"].append(crime[1])
-                if not (flag) or (specCrime != "year"):
+                    flag = False
+                if (specCrime != "year"):
+                    if not (flag):
                         crimeMergeElement["data"].append(0)
 
         data["series"] = crimeMergeList
