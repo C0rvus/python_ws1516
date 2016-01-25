@@ -13,27 +13,18 @@ class CommonCrime:
         collection = db.get_collection("commonc")                           # Get that collection with the name "commonc" which contains all crime types
         data = {}
         dictlist = []
-        minList = []
 
         for doc in collection.find():                                       # Iterate over every document
+            minList = []
             for key, value in doc.iteritems():                              # For every key, value in each document
-                if key == "year":
-                        temp = [key,value]
-                        minList.append(temp)
-                        dictlist.append(minList)
-                        minList = []
-                else:
-                    if key != "_id":                                        # Do not process _id - key here
-                        temp = [key,value]
-                        minList.append(temp)
+                if(key != "year") and (key != "_id"):
+                    dictlist.append([key,value])
 
         crimeTypeList = []
-        for year in dictlist:
-            for crime in year:
-                if crime[0] != "year":
-                    aktCrimeElement = crime[0]
-                    if not any(aktCrimeElement in s for s in crimeTypeList):
-                        crimeTypeList.append(aktCrimeElement)
+        for crime in dictlist:
+            aktCrimeElement = crime[0]
+            if not any(aktCrimeElement in s for s in crimeTypeList):
+                crimeTypeList.append(aktCrimeElement)
 
 
         mainArray = []
@@ -49,16 +40,14 @@ class CommonCrime:
 
         for crimeMergeElement in crimeMergeList:
             aktCrime = crimeMergeElement["name"]
-            for year in mainArray:
-                flag = False
-                for crime in year:
-                    specCrime = crime[0]
-                    if (specCrime != "year"):
-                        if(specCrime == aktCrime):
-                            flag = True
-                            crimeMergeElement["data"].append(crime[1])
-                if (flag == False):
-                    crimeMergeElement["data"].append(0)
+            flag = False
+            for crime in mainArray:
+                test = crime[0]
+                if(crime[0] == aktCrime):
+                    flag = True
+                    crimeMergeElement["data"].append(crime[1])
+            if (flag == False):
+                crimeMergeElement["data"].append(0)
 
         data["series"] = crimeMergeList
         json_data = json.dumps(data)                                        # Dumps that object to be really in json-format
