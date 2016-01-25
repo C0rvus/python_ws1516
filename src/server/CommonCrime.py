@@ -57,10 +57,8 @@ class CommonCrime:
                         if(specCrime == aktCrime):
                             flag = True
                             crimeMergeElement["data"].append(crime[1])
-                    flag = False
-                if (specCrime == "year"):
-                    if not (flag):
-                        crimeMergeElement["data"].append(0)
+                if (flag == False):
+                    crimeMergeElement["data"].append(0)
 
         data["series"] = crimeMergeList
         json_data = json.dumps(data)                                        # Dumps that object to be really in json-format
