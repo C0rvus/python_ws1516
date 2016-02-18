@@ -12,7 +12,7 @@ mainController.arrestCrimeController = (function () {
         data = null,
         chartType = "pie",
         topic = "arrestCrime",
-        urlRequest = window.location.origin + "/" + topic,
+        urlRequest = window.location.origin + ":5000/" + topic,
 
         _initView = function (data) {
             arrestCrimeView = mainController.arrestCrimeView.init(data);
