@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
 </head>
 <body>
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -10,34 +8,7 @@
 <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
 
-<script>
-var globalDataTestMegaGeil = null;
+<script src="demo.html.0.js"></script>
 
-$.ajax({
-    url: 'http://52.29.118.210:5000/getData/number-of-tables',
-    type: 'GET',
-    crossDomain: true,
-    dataType: 'text',
-    success: function (data) {
-        console.log(jQuery.parseJSON(data));
-        buildHighCharts(jQuery.parseJSON(data));
-    }
-});
 
-function buildHighCharts(dataGlobal) {
-    $('#container').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'DEMO'
-        },
-        credits: {
-            enabled: false
-        },
-        series: dataGlobal.series
-    });
-}
-</script>
-</body>
-</html>
+</body></html>

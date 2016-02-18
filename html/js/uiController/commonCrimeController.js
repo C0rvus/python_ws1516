@@ -15,7 +15,7 @@ mainController.commonCrimeController = (function () {
         chartType = "column",
         selectedYear = 2001,
         topic = "commonCrime",
-        urlRequest = "http://52.29.118.210:5000/" + topic,
+        urlRequest = window.location.origin+ topic,
 
         _createSelectField = function (array, nameSelection) {
             var selectList = document.getElementById(topic + nameSelection),
@@ -48,7 +48,7 @@ mainController.commonCrimeController = (function () {
         _buildUrl = function () {
             selectedYear = $("#" + topic + "YearSelect").val();
             chartType = $("#" + topic + "ChartSelect").val();
-            urlRequest = "http://52.29.118.210:5000/" + topic;
+            urlRequest = window.location.origin + topic;
             _getData();
         },
 
